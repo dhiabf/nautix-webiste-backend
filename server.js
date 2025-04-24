@@ -20,11 +20,21 @@ const port = process.env.PORT || 3004;
 
 // CORS Configuration
 const corsOptions = {
-  origin: 'http://localhost:3000',  // Allow requests from your frontend (React app)
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS: ' + origin));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Allowed HTTP methods
   allowedHeaders: ['Content-Type', 'Authorization'],  // Allow Authorization header
   credentials: true,  // Allow credentials (cookies, sessions)
 };
+const allowedOrigins = [
+  'http://localhost:3000',                 // for local dev
+  'https://nautix-trek.web.app',           // deployed frontend
+];
 
 app.use(cors(corsOptions));  // Use the customized CORS middleware
 app.use(express.json());
