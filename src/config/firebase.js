@@ -3,7 +3,7 @@ const serviceAccount = require('../../serviceAccountKey.json');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://nautix-trek-default-rtdb.europe-west1.firebasedatabase.app',
+  databaseURL:   process.env.databaseURL,
 });
 
 const db = admin.database();
