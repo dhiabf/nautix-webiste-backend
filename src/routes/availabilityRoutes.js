@@ -7,7 +7,7 @@ const {
   getUpcomingAvailability,
   updateAvailability,
   deleteAvailability
-} = require('../controllers/AvailabilityController');
+} = require('../controllers/availabilityController');
 
 
 router.post('/', addAvailability);
